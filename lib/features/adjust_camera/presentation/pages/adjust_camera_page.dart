@@ -26,7 +26,7 @@ class _AdjustCameraPageState extends State<AdjustCameraPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      // initCamera();
+      initCamera();
     });
   }
 
