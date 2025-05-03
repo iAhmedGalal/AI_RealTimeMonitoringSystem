@@ -1,5 +1,7 @@
 class AppStrings {
   static const String appName = 'Graduation Project';
+  static const String med = 'Med';
+  static const String vision = 'Vision';
   static const String loginToYourAccount = 'Login to your\naccount';
   static const String registerNewAccount = 'Register new\naccount';
   static const String haveAccount = "Don't have an account? ";

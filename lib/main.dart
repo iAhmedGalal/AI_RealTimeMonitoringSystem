@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:graduationproject/core/utils/app_assets.dart';
 import 'package:graduationproject/features/login/presentation/pages/login_page.dart';
+import 'package:graduationproject/features/splash/presentation/splash_screen.dart';
 
 import 'features/login/presentation/pages/login_page.dart';
 import 'firebase_options.dart';
@@ -22,11 +23,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Medical Monitoring',
+      title: 'MedVision',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(), // Initial page is LoginPage
+      home: SplashScreen(), // Initial page is LoginPage
     );
   }
 }

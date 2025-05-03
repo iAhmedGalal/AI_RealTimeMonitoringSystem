@@ -112,28 +112,11 @@ class _AdjustCameraPageState extends State<AdjustCameraPage> {
                 flex: 2,
                 child: SizedBox(
                   width: double.infinity,
-                  child: (cameraController?.value.isInitialized ?? false)
-                      ? CameraView(controller: cameraController!)
-                      : Container(),
+                  child: (cameraController != null)
+                    ? CameraView(controller: cameraController!)
+                    : Container(),
                 ),
               ),
-              // Expanded(
-              //   flex: 2,
-              //   child: Column(
-              //     children: [
-              //       SizedBox(
-              //         width: double.infinity,
-              //         height: 350,
-              //         child: Container(
-              //           decoration: BoxDecoration(
-              //             color: AppColors.borderColor,
-              //             border: Border.all(color: AppColors.borderColor),
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
               Expanded(
                 flex: 2,
                 child: Column(
@@ -142,7 +125,7 @@ class _AdjustCameraPageState extends State<AdjustCameraPage> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        list[0]['timestamp'].toString(),
+                        list[0]['detected_classes'][0] ?? '',
                         style: textStyleColorBoldSize(AppColors.black, 18),
                       ),
                     ),
@@ -174,7 +157,9 @@ class _AdjustCameraPageState extends State<AdjustCameraPage> {
                             textColor: AppColors.black,
                             borderColor: AppColors.borderColor,
                             backgroundColor: AppColors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                              cameraController?.dispose();
+                            },
                           ),
                         ),
                         Expanded(
