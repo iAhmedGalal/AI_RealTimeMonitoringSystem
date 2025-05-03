@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:graduationproject/core/utils/app_assets.dart';
 import 'package:graduationproject/core/utils/app_colors.dart';
@@ -18,11 +19,14 @@ class _AdjustCameraPageState extends State<AdjustCameraPage> {
   late CameraController? cameraController;
   late List<CameraDescription> cameras;
 
+  final Stream<QuerySnapshot> _liveStream = FirebaseFirestore.instance
+      .collection('live_detection').snapshots();
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      initCamera();
+      // initCamera();
     });
   }
 
@@ -59,6 +63,7 @@ class _AdjustCameraPageState extends State<AdjustCameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           AppStrings.adjustCamera,
@@ -67,71 +72,143 @@ class _AdjustCameraPageState extends State<AdjustCameraPage> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
+        scrolledUnderElevation: 0,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: SizedBox(
-              width: double.infinity,
-              child: (cameraController?.value.isInitialized ?? false)
-                ? CameraView(controller: cameraController!)
-                : Container(),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomButton(
-                  text: AppStrings.focusAdjustment,
-                  textAlign: TextAlign.start,
-                  onPressed: () {},
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _liveStream,
+        builder: (context, snapshot) {
+          List list = snapshot.data?.docs ?? [];
+
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                AppStrings.somethingWentWrong,
+                style: textStyleColorBoldSize(AppColors.black, 18),
+              ),
+            );
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: Text(
+                AppStrings.loading,
+                style: textStyleColorBoldSize(AppColors.black, 18),
+              ),
+            );
+          }
+
+          if (list.isEmpty) {
+            return Center(
+              child: Text(
+                AppStrings.noData,
+                style: textStyleColorBoldSize(AppColors.black, 18),
+              ),
+            );
+          }
+
+          return Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: (cameraController?.value.isInitialized ?? false)
+                      ? CameraView(controller: cameraController!)
+                      : Container(),
                 ),
-                SizedBox(height: 12),
-                CustomButton(
-                  text: AppStrings.resolutionSettings,
-                  textAlign: TextAlign.start,
-                  onPressed: () {},
-                ),
-                SizedBox(height: 12),
-                CustomButton(
-                  text: AppStrings.zoomAndPan,
-                  textAlign: TextAlign.start,
-                  onPressed: () {},
-                ),
-                SizedBox(height: 24),
-                Row(
+              ),
+              // Expanded(
+              //   flex: 2,
+              //   child: Column(
+              //     children: [
+              //       SizedBox(
+              //         width: double.infinity,
+              //         height: 350,
+              //         child: Container(
+              //           decoration: BoxDecoration(
+              //             color: AppColors.borderColor,
+              //             border: Border.all(color: AppColors.borderColor),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: CustomButton(
-                        text: AppStrings.stop,
-                        textAlign: TextAlign.center,
-                        textColor: AppColors.black,
-                        borderColor: AppColors.borderColor,
-                        backgroundColor: AppColors.white,
-                        onPressed: () {},
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        list[0]['timestamp'].toString(),
+                        style: textStyleColorBoldSize(AppColors.black, 18),
                       ),
                     ),
-                    Expanded(
-                      child: CustomButton(
-                        text: AppStrings.start,
-                        textAlign: TextAlign.center,
-                        textColor: AppColors.white,
-                        backgroundColor: AppColors.primaryColor,
-                        onPressed: () {
-                          initCamera();
-                        },
-                      ),
+                    SizedBox(height: 12),
+                    CustomButton(
+                      text: AppStrings.focusAdjustment,
+                      textAlign: TextAlign.start,
+                      onPressed: () {},
+                    ),
+                    SizedBox(height: 12),
+                    CustomButton(
+                      text: AppStrings.resolutionSettings,
+                      textAlign: TextAlign.start,
+                      onPressed: () {},
+                    ),
+                    SizedBox(height: 12),
+                    CustomButton(
+                      text: AppStrings.zoomAndPan,
+                      textAlign: TextAlign.start,
+                      onPressed: () {},
+                    ),
+                    SizedBox(height: 24),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CustomButton(
+                            text: AppStrings.stop,
+                            textAlign: TextAlign.center,
+                            textColor: AppColors.black,
+                            borderColor: AppColors.borderColor,
+                            backgroundColor: AppColors.white,
+                            onPressed: () {},
+                          ),
+                        ),
+                        Expanded(
+                          child: CustomButton(
+                            text: AppStrings.start,
+                            textAlign: TextAlign.center,
+                            textColor: AppColors.white,
+                            backgroundColor: AppColors.primaryColor,
+                            onPressed: () {
+                              initCamera();
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-        ],
-      ),
+              ),
+            ],
+          );
+
+          // return ListView.builder(
+          //   itemCount: list.length,
+          //   itemBuilder: (context, index) {
+          //     return ListTile(
+          //       title: Text(
+          //         list[index]['timestamp'].toString(),
+          //         style: textStyleColorNormalSize(AppColors.black, 16),
+          //       ),
+          //     );
+          //   },
+          // );
+        },
+      )
     );
   }
 }

@@ -1,4 +1,4 @@
-package com.example.graduationproject
+package com.project.medicalmonitoring
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -11,6 +11,10 @@ class AppStrings {
   static const String username = 'Username';
   static const String password = 'Password';
 
+  static const String somethingWentWrong = 'Something went wrong';
+  static const String loading = "Loading";
+  static const String noData = "No data found";
+
   static const String start = 'Start';
   static const String stop = 'Stop';
   static const String adjustCamera = "Adjust Camera";
