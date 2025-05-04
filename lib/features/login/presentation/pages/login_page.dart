@@ -6,6 +6,7 @@ import 'package:graduationproject/core/utils/app_styles.dart';
 import 'package:graduationproject/features/about/presentation/pages/about_page.dart';
 import 'package:graduationproject/features/adjust_camera/presentation/pages/adjust_camera_page.dart';
 import 'package:graduationproject/features/register/presentation/pages/register_page.dart';
+import 'package:graduationproject/shared/auth_services.dart';
 import 'package:graduationproject/shared/widgets/custome_button_widget.dart';
 import 'package:graduationproject/shared/widgets/input_field_widget.dart';
 
@@ -15,7 +16,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController = TextEditingController();
+  final _auth = AuthService();
+
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   bool passwordVisible = false;
@@ -24,6 +27,29 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       passwordVisible = !passwordVisible;
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  _login() async {
+    final user = await _auth.loginUserWithEmailAndPassword(
+        _emailController.text, _passwordController.text);
+
+    if (user != null) {
+      goToHome(context);
+    }
+  }
+
+  void goToHome(context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => AdjustCameraPage()),
+    );
   }
 
   @override
@@ -61,8 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     InputField(
-                      hintText: AppStrings.username,
-                      controller: _usernameController,
+                      hintText: AppStrings.email,
+                      controller: _emailController,
                       suffixIcon: SizedBox(),
                     ),
                     SizedBox(
@@ -96,10 +122,15 @@ class _LoginPageState extends State<LoginPage> {
                 textColor: AppColors.white,
                 backgroundColor: AppColors.primaryColor,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AdjustCameraPage()),
-                  );
+                  if (_emailController.text.isNotEmpty) {
+                    return;
+                  }
+
+                  if (_passwordController.text.isNotEmpty) {
+                    return;
+                  }
+
+                  _login();
                 },
               ),
               SizedBox(

@@ -6,7 +6,7 @@ import 'package:graduationproject/features/login/presentation/pages/login_page.d
 import 'package:graduationproject/features/splash/presentation/splash_screen.dart';
 
 import 'features/login/presentation/pages/login_page.dart';
-import 'firebase_options.dart';
+import 'shared/firebase_options.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

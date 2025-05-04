@@ -4,6 +4,7 @@ import 'package:graduationproject/core/utils/app_colors.dart';
 import 'package:graduationproject/core/utils/app_strings.dart';
 import 'package:graduationproject/core/utils/app_styles.dart';
 import 'package:graduationproject/features/adjust_camera/presentation/pages/adjust_camera_page.dart';
+import 'package:graduationproject/shared/auth_services.dart';
 import 'package:graduationproject/shared/widgets/custome_button_widget.dart';
 import 'package:graduationproject/shared/widgets/input_field_widget.dart';
 
@@ -21,10 +22,36 @@ class _RegisterPageState extends State<RegisterPage> {
   bool passwordConfirmationVisible = false;
   bool isChecked = false;
 
+  final _auth = AuthService();
+
   void togglePassword() {
     setState(() {
       passwordVisible = !passwordVisible;
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    userNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  _signup() async {
+    final user = await _auth.createUserWithEmailAndPassword(
+        emailController.text, passwordController.text);
+
+    if (user != null) {
+      goToHome(context);
+    }
+  }
+
+  void goToHome(context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => AdjustCameraPage()),
+    );
   }
 
   @override
@@ -153,10 +180,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 textColor: AppColors.white,
                 backgroundColor: AppColors.primaryColor,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AdjustCameraPage()),
-                  );
+                  if (emailController.text.isEmpty) {
+                    return;
+                  }
+
+                  if (passwordController.text.isEmpty) {
+                    return;
+                  }
+
+                  if (isChecked == false) {
+                    return;
+                  }
+
+                  _signup();
                 },
               ),
               SizedBox(
