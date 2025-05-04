@@ -106,77 +106,74 @@ class _AdjustCameraPageState extends State<AdjustCameraPage> {
             );
           }
 
-          return Column(
+          return ListView(
             children: [
-              Expanded(
-                flex: 2,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: (cameraController != null)
-                    ? CameraView(controller: cameraController!)
-                    : Container(),
-                ),
+              SizedBox(
+                width: double.infinity,
+                height: 260,
+                child: (cameraController != null)
+                  ? CameraView(controller: cameraController!)
+                  : Container(),
               ),
-              Expanded(
-                flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        list[0]['detected_classes'][0] ?? '',
-                        style: textStyleColorBoldSize(AppColors.black, 18),
+              Spacer(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      list[0]['detected_classes'][0] ?? '',
+                      style: textStyleColorBoldSize(AppColors.black, 18),
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  CustomButton(
+                    text: AppStrings.focusAdjustment,
+                    textAlign: TextAlign.start,
+                    onPressed: () {},
+                  ),
+                  SizedBox(height: 12),
+                  CustomButton(
+                    text: AppStrings.resolutionSettings,
+                    textAlign: TextAlign.start,
+                    onPressed: () {},
+                  ),
+                  SizedBox(height: 12),
+                  CustomButton(
+                    text: AppStrings.zoomAndPan,
+                    textAlign: TextAlign.start,
+                    onPressed: () {},
+                  ),
+                  SizedBox(height: 24),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomButton(
+                          text: AppStrings.stop,
+                          textAlign: TextAlign.center,
+                          textColor: AppColors.black,
+                          borderColor: AppColors.borderColor,
+                          backgroundColor: AppColors.white,
+                          onPressed: () {
+                            cameraController?.dispose();
+                          },
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 12),
-                    CustomButton(
-                      text: AppStrings.focusAdjustment,
-                      textAlign: TextAlign.start,
-                      onPressed: () {},
-                    ),
-                    SizedBox(height: 12),
-                    CustomButton(
-                      text: AppStrings.resolutionSettings,
-                      textAlign: TextAlign.start,
-                      onPressed: () {},
-                    ),
-                    SizedBox(height: 12),
-                    CustomButton(
-                      text: AppStrings.zoomAndPan,
-                      textAlign: TextAlign.start,
-                      onPressed: () {},
-                    ),
-                    SizedBox(height: 24),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CustomButton(
-                            text: AppStrings.stop,
-                            textAlign: TextAlign.center,
-                            textColor: AppColors.black,
-                            borderColor: AppColors.borderColor,
-                            backgroundColor: AppColors.white,
-                            onPressed: () {
-                              cameraController?.dispose();
-                            },
-                          ),
+                      Expanded(
+                        child: CustomButton(
+                          text: AppStrings.start,
+                          textAlign: TextAlign.center,
+                          textColor: AppColors.white,
+                          backgroundColor: AppColors.primaryColor,
+                          onPressed: () {
+                            initCamera();
+                          },
                         ),
-                        Expanded(
-                          child: CustomButton(
-                            text: AppStrings.start,
-                            textAlign: TextAlign.center,
-                            textColor: AppColors.white,
-                            backgroundColor: AppColors.primaryColor,
-                            onPressed: () {
-                              initCamera();
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 4),
+                ],
               ),
             ],
           );
