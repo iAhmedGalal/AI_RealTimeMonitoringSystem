@@ -38,7 +38,9 @@ dependencies:
   cloud_firestore:
   firebase_core:
   firebase_auth:
-  change_app_package_name:
+  get_it:
+  flutter_bloc:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

@@ -31,6 +31,6 @@ class AppRegex {
   }
 
   static bool hasMinLength(String password) {
-    return RegExp(r'^(?=.{8,})').hasMatch(password);
+    return RegExp(r'^(?=.{6,})').hasMatch(password);
   }
 }

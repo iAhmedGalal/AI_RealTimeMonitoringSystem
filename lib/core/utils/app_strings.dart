@@ -13,6 +13,14 @@ class AppStrings {
   static const String username = 'Username';
   static const String password = 'Password';
 
+  static const String validateEmail = 'Please enter a valid email';
+  static const String validatePassword = 'Password must be at least 6 characters';
+  static const String validateEmptyPassword = 'Password can\'t be empty';
+  static const String validateEmptyUsername = 'Username can\'t be empty';
+  static const String validateEmptyEmail = 'Email can\'t be empty';
+  static const String validateUsername = 'Please enter a valid username';
+  static const String validateTerms = 'Please accept the terms and conditions';
+
   static const String somethingWentWrong = 'Something went wrong';
   static const String loading = "Loading";
   static const String noData = "No data found";
