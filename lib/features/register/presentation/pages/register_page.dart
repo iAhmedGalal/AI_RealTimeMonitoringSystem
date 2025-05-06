@@ -61,6 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           AppAssets.accent,
                           width: 99,
                           height: 4,
+                          color: AppColors.greenBackground,
                         ),
                       ],
                     ),
@@ -145,7 +146,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             Text(
                               AppStrings.termsAndConditions,
-                              style: textStyleColorNormalSize(AppColors.primaryColor, 16),
+                              style: textStyleColorNormalSize(AppColors.greenBackground, 16),
                             ),
                           ],
                         ),
@@ -160,7 +161,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         if (state is RegisterLoading) {
                           return Center(
                             child: CircularProgressIndicator(
-                              color: AppColors.primaryColor,
+                              color: AppColors.greenBackground,
                             ),
                           );
                         }
@@ -169,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           text: AppStrings.register,
                           textAlign: TextAlign.center,
                           textColor: AppColors.white,
-                          backgroundColor: AppColors.primaryColor,
+                          backgroundColor: AppColors.greenBackground,
                           onPressed: () {
                             context.read<RegisterCubit>().signup();
                           },
@@ -195,7 +196,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           },
                           child: Text(
                             AppStrings.login,
-                            style: textStyleColorNormalSize(AppColors.primaryColor, 16),
+                            style: textStyleColorNormalSize(AppColors.greenBackground, 16),
                           ),
                         ),
                       ],
