@@ -65,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                           AppAssets.accent,
                           width: 99,
                           height: 4,
+                          color: AppColors.greenBackground,
                         ),
                       ],
                     ),
@@ -110,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                         if (state is LoginLoading) {
                           return Center(
                             child: CircularProgressIndicator(
-                              color: AppColors.primaryColor,
+                              color: AppColors.greenBackground,
                             ),
                           );
                         }
@@ -119,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                           text: AppStrings.login,
                           textAlign: TextAlign.center,
                           textColor: AppColors.white,
-                          backgroundColor: AppColors.primaryColor,
+                          backgroundColor: AppColors.greenBackground,
                           onPressed: () {
                             context.read<LoginCubit>().login();
                           },
@@ -146,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: Text(
                             AppStrings.register,
-                            style: textStyleColorNormalSize(AppColors.primaryColor, 16),
+                            style: textStyleColorNormalSize(AppColors.greenBackground, 16),
                           ),
                         ),
                       ],
