@@ -5,6 +5,7 @@ import 'package:graduationproject/core/utils/app_colors.dart';
 import 'package:graduationproject/core/utils/app_strings.dart';
 import 'package:graduationproject/core/utils/app_styles.dart';
 import 'package:graduationproject/features/adjust_camera/presentation/pages/adjust_camera_page.dart';
+import 'package:graduationproject/features/adjust_camera/presentation/pages/camera_stream_page.dart';
 import 'package:graduationproject/features/register/presentation/manager/register_cubit.dart';
 import 'package:graduationproject/shared/auth_services.dart';
 import 'package:graduationproject/shared/widgets/custome_button_widget.dart';
@@ -28,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
             if (state is RegisterSuccess) {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => AdjustCameraPage()),
+                MaterialPageRoute(builder: (context) => CameraStreamPage()),
               );
             }
 

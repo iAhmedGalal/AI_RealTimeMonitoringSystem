@@ -6,6 +6,7 @@ import 'package:graduationproject/core/utils/app_strings.dart';
 import 'package:graduationproject/core/utils/app_styles.dart';
 import 'package:graduationproject/features/about/presentation/pages/about_page.dart';
 import 'package:graduationproject/features/adjust_camera/presentation/pages/adjust_camera_page.dart';
+import 'package:graduationproject/features/adjust_camera/presentation/pages/camera_stream_page.dart';
 import 'package:graduationproject/features/login/presentation/manager/login_cubit.dart';
 import 'package:graduationproject/features/register/presentation/pages/register_page.dart';
 import 'package:graduationproject/shared/auth_services.dart';
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
             if (state is LoginSuccess) {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => AdjustCameraPage()),
+                MaterialPageRoute(builder: (context) => CameraStreamPage()),
               );
             }
 
