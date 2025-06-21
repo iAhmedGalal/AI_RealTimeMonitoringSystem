@@ -18,7 +18,12 @@ class CameraStreamPage extends StatefulWidget {
 }
 
 class _CameraStreamPageState extends State<CameraStreamPage> {
-  late VlcPlayerController _vlcViewController;
+  VlcPlayerController _vlcViewController = VlcPlayerController.network(
+    'rtsp://Camera1:Tapocam@192.168.1.12:554/stream1',
+    hwAcc: HwAcc.full,
+    autoPlay: true,
+    options: VlcPlayerOptions(),
+  );
 
   @override
   void initState() {
@@ -61,14 +66,17 @@ class _CameraStreamPageState extends State<CameraStreamPage> {
           children: [
             SizedBox(
               width: double.infinity,
-              height: 300,
+              height: 350,
               child: VlcPlayer(
                 controller: _vlcViewController,
                 aspectRatio: 16 / 9,
-                placeholder: Center(child: CircularProgressIndicator()),
+                placeholder: Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.greenBackground,
+                  ),
+                ),
               ),
             ),
-            Spacer(),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -100,7 +108,7 @@ class _CameraStreamPageState extends State<CameraStreamPage> {
                         borderColor: AppColors.borderColor,
                         backgroundColor: AppColors.white,
                         onPressed: () {
-                          _vlcViewController?.dispose();
+                          _vlcViewController.dispose();
                         },
                       ),
                     ),
