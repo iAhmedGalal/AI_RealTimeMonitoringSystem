@@ -88,9 +88,18 @@ class UserProfilePage extends StatelessWidget {
   Widget _buildUserInfoTile(IconData icon, String title, String? value) {
     return Card(
       child: ListTile(
-        leading: Icon(icon, color: AppColors.greenBackground),
-        title: Text(title, style: textStyleColorBoldSize(AppColors.greenBackground, 16)),
-        subtitle: Text(value ?? AppStrings.notAvailable, style: textStyleColorNormalSize(AppColors.black, 14)),
+        leading: Icon(
+          icon,
+          color: AppColors.greenBackground
+        ),
+        title: Text(
+          title,
+          style: textStyleColorBoldSize(AppColors.greenBackground, 16)
+        ),
+        subtitle: Text(
+          value ?? AppStrings.notAvailable,
+          style: textStyleColorNormalSize(AppColors.black, 14)
+        ),
       ),
     );
   }

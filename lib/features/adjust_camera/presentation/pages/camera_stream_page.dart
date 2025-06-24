@@ -67,17 +67,6 @@ class _CameraStreamPageState extends State<CameraStreamPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: Colors.white,
-        // appBar: AppBar(
-        //   title: Text(
-        //     AppStrings.adjustCamera,
-        //     style: textStyleColorBoldSize(AppColors.black, 18),
-        //   ),
-        //   centerTitle: true,
-        //   backgroundColor: Colors.white,
-        //   elevation: 0,
-        //   scrolledUnderElevation: 0,
-        // ),
         body: ListView(
           children: [
             SizedBox(

@@ -15,7 +15,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   _startDelay(context) {
     Future.delayed(Duration(seconds: 3), () {
       var token = StorageHelper.getStoredToken();
@@ -45,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.greenBackground, // اللون الأخضر بالخلفية
+      backgroundColor: AppColors.greenBackground,
       body: Center(
         child: RichText(
           text: TextSpan(
