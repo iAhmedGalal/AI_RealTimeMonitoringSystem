@@ -6,12 +6,23 @@ class AppStrings {
   static const String registerNewAccount = 'Register new\naccount';
   static const String haveAccount = "Don't have an account? ";
   static const String alreadyHaveAccount = "Already have an account? ";
+  static const String stream = 'Stream';
+  static const String camera = 'Camera';
   static const String aboutUs = 'About Us';
+  static const String profile = 'Profile';
   static const String login = 'Login';
   static const String register = 'Register';
   static const String email = 'Email';
+  static const String phone = 'Phone';
+  static const String userId = 'User ID';
   static const String username = 'Username';
   static const String password = 'Password';
+
+  static const String logoutSuccess = 'Logged out successfully';
+  static const String logout = 'Log out';
+  static const String notAvailable = 'Not available';
+  static const String noUserFound = 'No user found';
+
 
   static const String validateEmail = 'Please enter a valid email';
   static const String validatePassword = 'Password must be at least 6 characters';
@@ -24,6 +35,10 @@ class AppStrings {
   static const String somethingWentWrong = 'Something went wrong';
   static const String loading = "Loading";
   static const String noData = "No data found";
+
+  static const String streamStopped = "Stream Stopped";
+  static const String streamStarted = "Stream Started";
+  static const String noStream = "No Stream";
 
   static const String start = 'Start';
   static const String stop = 'Stop';

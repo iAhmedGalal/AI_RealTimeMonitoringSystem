@@ -4,6 +4,7 @@ import 'package:graduationproject/core/utils/app_strings.dart';
 import 'package:graduationproject/core/utils/app_styles.dart';
 import 'package:graduationproject/features/adjust_camera/presentation/pages/adjust_camera_page.dart';
 import 'package:graduationproject/features/adjust_camera/presentation/pages/camera_stream_page.dart';
+import 'package:graduationproject/features/home/presentation/pages/home_screen.dart';
 import 'package:graduationproject/features/login/presentation/pages/login_page.dart';
 import 'package:graduationproject/shared/storage_helper.dart';
 
@@ -30,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => CameraStreamPage()),
+        MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     });
   }

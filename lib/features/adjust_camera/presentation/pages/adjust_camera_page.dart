@@ -64,17 +64,17 @@ class _AdjustCameraPageState extends State<AdjustCameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          AppStrings.adjustCamera,
-          style: textStyleColorBoldSize(AppColors.black, 18),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        scrolledUnderElevation: 0,
-      ),
+      // backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   title: Text(
+      //     AppStrings.adjustCamera,
+      //     style: textStyleColorBoldSize(AppColors.black, 18),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   scrolledUnderElevation: 0,
+      // ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _liveStream,
         builder: (context, snapshot) {

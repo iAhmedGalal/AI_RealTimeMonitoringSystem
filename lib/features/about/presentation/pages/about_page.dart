@@ -7,12 +7,12 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppStrings.aboutUs,
-          style: textStyleColorBoldSize(AppColors.black, 18),
-        ),
-      ),
+      // appBar: AppBar(
+      //   title: Text(
+      //     AppStrings.aboutUs,
+      //     style: textStyleColorBoldSize(AppColors.black, 18),
+      //   ),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
