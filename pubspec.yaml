@@ -42,6 +42,7 @@ dependencies:
   flutter_bloc:
   shared_preferences:
   flutter_vlc_player:
+  video_player:
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/videos/
 
   fonts:
     - family: Jannat

@@ -4,6 +4,7 @@ import 'package:graduationproject/core/utils/app_strings.dart';
 import 'package:graduationproject/core/utils/app_styles.dart';
 import 'package:graduationproject/features/about/presentation/pages/about_page.dart';
 import 'package:graduationproject/features/adjust_camera/presentation/pages/camera_stream_page.dart';
+import 'package:graduationproject/features/adjust_camera/presentation/pages/video_player_page.dart';
 import 'package:graduationproject/features/profile/presentation/pages/profile_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,7 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    CameraStreamPage(),
+    // CameraStreamPage(),
+    VideoPlayerScreen(),
     AboutUsPage(),
     UserProfilePage()
   ];
